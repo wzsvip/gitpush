@@ -3,11 +3,11 @@ name: git pull
 on:
   workflow_dispatch:
     inputs:
-      triggle:
-        description: 'triggle'
+      trigger:
+        description: 'trigger'
   schedule:
-     - cron:  '0 8,14,20,02 * * *' # 每6个小时触发一次
-push:
+    - cron: '0 8,14,20,02 * * *' # 每6个小时触发一次
+  push:
     branches:
       - main
 
@@ -45,4 +45,4 @@ jobs:
         git config --local user.email "wuzhij@mail.com"
         git config --local user.name "wzsvip"
         #git reset --hard origin/main
-        git push -f 
+        git push -f
