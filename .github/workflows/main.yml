@@ -24,6 +24,7 @@ jobs:
         pip install pyunpack
 
     - name: Find and unzip file
+      id: unzip_file
       run: |
         import os
         from pyunpack import Archive
@@ -40,16 +41,20 @@ jobs:
         # Assuming there is only one .zip file, extract it
         zip_file = zip_files[0]
         Archive(zip_file).extractall('.')
+        print(f"Extracted {zip_file}")
+        echo "ZIP_FILE=$(basename $zip_file)" >> $GITHUB_ENV
 
     - name: Configure Git
       run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.email "wuzhij@mail.com"
+        git config --local user.name "wzsvip"
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
 
     - name: Add changes to Git
       run: |
         git add .
-        git commit -m "Unzipped files from $(basename $zip_file)"
+        git commit -m "Unzipped files from $(basename ${{ env.ZIP_FILE }})"
 
     - name: Push changes to repository
       env:
