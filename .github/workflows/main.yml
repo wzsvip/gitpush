@@ -7,7 +7,7 @@ on:
         description: 'trigglr'
   schedule:
      - cron:  '0 8,14,20,02 * * *' # 每6个小时触发一次
-push:
+  push:
     branches:
       - main
 
