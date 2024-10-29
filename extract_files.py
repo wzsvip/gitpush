@@ -14,8 +14,14 @@ def main():
     
     # 解压找到的第一个.zip文件
     zip_file = zip_files[0]
-    Archive(zip_file).extractall('unzip')
-    print(f"Extracted {zip_file} to unzip directory")
+    
+    # 确保目标目录存在
+    unzip_dir = 'unzip'
+    if not os.path.exists(unzip_dir):
+        os.makedirs(unzip_dir)
+    
+    Archive(zip_file).extractall(unzip_dir)
+    print(f"Extracted {zip_file} to {unzip_dir} directory")
 
 if __name__ == '__main__':
     main()
