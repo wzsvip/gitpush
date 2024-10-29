@@ -3,11 +3,11 @@ name: git pull
 on:
   workflow_dispatch:
     inputs:
-      trigger:
-        description: 'trigger'
+      trigglr:
+        description: 'trigglr'
   schedule:
-    - cron: '0 8,14,20,02 * * *' # 每6个小时触发一次
-  push:
+     - cron:  '0 8,14,20,02 * * *' # 每6个小时触发一次
+push:
     branches:
       - main
 
@@ -32,9 +32,7 @@ jobs:
         
     - name: Run extract script
       run: python ${{ github.workspace }}/extract_files.py
-      env:
-        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-        
+
     - name: 提交更改
       run: |
         git config --local user.email "wuzhij@mail.com"
