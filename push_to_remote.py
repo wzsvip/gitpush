@@ -1,4 +1,5 @@
 import os
+import shutil
 import subprocess
 
 def main():
@@ -18,8 +19,11 @@ def main():
     print("Pushed changes to remote repository")
     
     # 删除unzip目录
-    os.rmdir('unzip')
-    print("Deleted unzip directory")
+    if os.path.exists('unzip'):
+        shutil.rmtree('unzip')
+        print("Deleted unzip directory")
+    else:
+        print("Directory 'unzip' does not exist")
 
 if __name__ == '__main__':
     main()
