@@ -43,10 +43,14 @@ jobs:
         Archive(zip_file).extractall('.')
         print(f"Extracted {zip_file}")
         echo "ZIP_FILE=$(basename $zip_file)" >> $GITHUB_ENV
+      shell: /usr/bin/bash -e {0}
+      env:
+        pythonLocation: /opt/hostedtoolcache/Python/3.12.7/x64
+        LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.7/x64/lib
 
     - name: Configure Git
       run: |
-        git config --local user.email "wuzhij@mail.com"
+              git config --local user.email "wuzhij@mail.com"
         git config --local user.name "wzsvip"
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
